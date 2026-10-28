@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Build Your First AI Project in 60 Minutes: Referral Kit</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#f2f4fb;--surface:#fff;--ink:#12162b;--mute:#5a6082;--line:#d9ddf0;--acc:#4b3fe4;--acc-ink:#fff;--ok:#0f9d6b;--wa:#1fa855;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1124;--surface:#171b36;--ink:#eef0ff;--mute:#9aa1cf;--line:#2a3060;--acc:#8a80ff;--acc-ink:#0e1124;--ok:#3ddba0;--wa:#3ddb7d}}
+:root[data-theme="dark"]{--bg:#0e1124;--surface:#171b36;--ink:#eef0ff;--mute:#9aa1cf;--line:#2a3060;--acc:#8a80ff;--acc-ink:#0e1124;--ok:#3ddba0;--wa:#3ddb7d}
+html{color-scheme:light dark;scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.55 Inter,system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:32px 20px 64px}
+h1,h2{font-family:"Bricolage Grotesque",Inter,sans-serif;letter-spacing:-.02em;margin:0}
+h1{font-size:clamp(30px,6vw,52px);line-height:1.05;font-weight:800;max-width:16ch}
+h2{font-size:22px;font-weight:700;margin-bottom:6px}
+.lead{color:var(--mute);max-width:56ch;margin:14px 0 28px}
+.grid{display:grid;gap:20px;grid-template-columns:1fr 1fr}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+label{display:block;font-weight:600;font-size:14px;margin:14px 0 6px}
+input{width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+button,.btn{font:600 15px Inter,sans-serif;border:0;border-radius:8px;padding:11px 16px;cursor:pointer;background:var(--acc);color:var(--acc-ink);text-decoration:none;display:inline-block}
+button.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.wa{background:var(--wa);color:#08210f}
+.row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.msg{white-space:pre-wrap;background:var(--bg);border:1px dashed var(--line);border-radius:10px;padding:14px;font-size:14px;margin-top:12px}
+.code{font:800 28px "Bricolage Grotesque",sans-serif;letter-spacing:.04em;color:var(--acc)}
+.note{font-size:13px;color:var(--mute);margin-top:12px}
+.bar{height:12px;background:var(--bg);border:1px solid var(--line);border-radius:99px;overflow:hidden;margin:10px 0}
+.bar i{display:block;height:100%;background:var(--acc);width:0;transition:width .5s}
+.ladder{list-style:none;margin:16px 0 0;padding:0}
+.ladder li{display:flex;gap:12px;padding:10px 0;border-top:1px solid var(--line);color:var(--mute)}
+.ladder li.on{color:var(--ink)}
+.ladder b{min-width:70px;color:var(--acc)}
+.ladder li.on b::after{content:" ✓";color:var(--ok)}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{text-align:left;padding:8px 6px;border-top:1px solid var(--line)}
+tr.me td{font-weight:700;color:var(--acc)}
+.hide{display:none}
+.stat{font:800 34px "Bricolage Grotesque",sans-serif}
+@media(prefers-reduced-motion:reduce){.bar i{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>Bring your batch. Build your first AI project.</h1>
+<p class="lead">Free 60-minute workshop for final-year engineering students. Get your personal link, share it in your class and club groups, and unlock rewards as friends register.</p>
+
+<div class="grid">
+  <section class="card" aria-labelledby="k">
+    <h2 id="k">1. Get your referral kit</h2>
+    <p class="note" style="margin-top:0">Takes 10 seconds. No sign-up needed.</p>
+    <label for="nm">Your name</label><input id="nm" placeholder="e.g. Ananya Rao" autocomplete="name">
+    <label for="cl">Your college</label><input id="cl" placeholder="e.g. RVCE Bengaluru" autocomplete="organization">
+    <div class="row"><button id="gen">Create my kit</button></div>
+    <p id="err" class="note" role="alert"></p>
+    <div id="kit" class="hide">
+      <div class="note">Your code</div><div class="code" id="code"></div>
+      <div class="msg" id="msg"></div>
+      <div class="row">
+        <a class="btn wa" id="wa" target="_blank" rel="noopener">Share on WhatsApp</a>
+        <button class="ghost" id="cp">Copy message</button>
+      </div>
+      <p class="note">Prototype link. In the live campaign the link points to the registration form and the code is captured in a hidden field.</p>
+    </div>
+  </section>
+
+  <section class="card" aria-labelledby="t">
+    <h2 id="t">2. Track and unlock</h2>
+    <div class="stat"><span id="cnt">0</span> <span style="font-size:16px;font-weight:500;color:var(--mute)">friends registered</span></div>
+    <div class="bar" role="progressbar" aria-valuemin="0" aria-valuemax="10" id="pb"><i id="fill"></i></div>
+    <ul class="ladder" id="ladder">
+      <li data-n="1"><b>1 friend</b><span>Workshop reminder with the project checklist</span></li>
+      <li data-n="3"><b>3 friends</b><span>Unlock the “10 AI project ideas for your resume” pack</span></li>
+      <li data-n="5"><b>5 friends</b><span>Unlock the project starter template and prompt library</span></li>
+      <li data-n="10"><b>10 friends</b><span>Enter the top-3 leaderboard for ₹500, ₹300, ₹200 vouchers</span></li>
+    </ul>
+    <div class="row"><button class="ghost" id="sim" disabled>Demo: simulate a friend registering</button></div>
+    <p class="note">The demo button is only for this prototype. Real counts would come from the registration sheet.</p>
+  </section>
+</div>
+
+<section class="card" style="margin-top:20px" aria-labelledby="lb">
+  <h2 id="lb">3. Campaign tracker</h2>
+  <div class="stat"><span id="tot">0</span> / 500 <span style="font-size:16px;font-weight:500;color:var(--mute)">registrations (demo data)</span></div>
+  <div class="bar" id="pb2"><i id="fill2"></i></div>
+  <div style="overflow-x:auto"><table><thead><tr><th>#</th><th>Ambassador</th><th>College</th><th>Registrations</th></tr></thead><tbody id="lbody"></tbody></table></div>
+  <p class="note">Seeded with sample ambassadors. In the live version this is a Google Sheet that updates every time a form submission carries a referral code, and I would post the top 5 in the ambassador group every morning to keep the competition going.</p>
+</section>
+</main>
+<script>
+const BASE="https://nxtwave.example/ai-workshop";
+const seed=[["Karthik S","PES University",41],["Meghana R","BMS College",36],["Arjun P","JNTU Hyderabad",29],["Sneha K","VIT Vellore",24],["Rohit D","NIT Warangal",18],["Divya M","SRM Chennai",12]];
+let st={me:null,n:0};
+const $=id=>document.getElementById(id);
+try{const s=localStorage.getItem("nxt_ref");if(s)st=JSON.parse(s)}catch(e){}
+function save(){try{localStorage.setItem("nxt_ref",JSON.stringify(st))}catch(e){}}
+function mkcode(n){const p=n.replace(/[^a-z]/gi,"").slice(0,4).toUpperCase().padEnd(4,"X");return "AI-"+p+"-"+Math.random().toString(36).slice(2,5).toUpperCase()}
+function text(){const l=BASE+"?ref="+st.me.code;return "Hey! I’m joining a free 60-minute workshop: “Build Your First AI Project in 60 Minutes” by NxtWave. You’ll build a real AI project you can put on your resume, and it’s free for final-year students.\n\nRegister here with my link: "+l+"\n\nSeats are limited, so register today."}
+function render(){
+  if(st.me){$("kit").classList.remove("hide");$("code").textContent=st.me.code;$("msg").textContent=text();$("wa").href="https://wa.me/?text="+encodeURIComponent(text());$("sim").disabled=false;$("nm").value=st.me.name;$("cl").value=st.me.college}
+  $("cnt").textContent=st.n;const pct=Math.min(st.n,10)*10;$("fill").style.width=pct+"%";$("pb").setAttribute("aria-valuenow",Math.min(st.n,10));
+  document.querySelectorAll("#ladder li").forEach(li=>li.classList.toggle("on",st.n>=+li.dataset.n));
+  const rows=seed.map(r=>({n:r[0],c:r[1],v:r[2],me:false}));
+  if(st.me)rows.push({n:st.me.name+" (you)",c:st.me.college,v:st.n,me:true});
+  rows.sort((a,b)=>b.v-a.v);
+  $("lbody").innerHTML=rows.map((r,i)=>`<tr class="${r.me?"me":""}"><td>${i+1}</td><td>${esc(r.n)}</td><td>${esc(r.c)}</td><td>${r.v}</td></tr>`).join("");
+  const tot=rows.reduce((a,r)=>a+r.v,0);$("tot").textContent=tot;$("fill2").style.width=Math.min(100,tot/5)+"%";
+}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+$("gen").onclick=()=>{const name=$("nm").value.trim(),college=$("cl").value.trim();
+  if(!name||!college){$("err").textContent="Enter your name and college to create your kit.";return}
+  $("err").textContent="";st={me:{name,college,code:mkcode(name)},n:0};save();render()};
+$("sim").onclick=()=>{st.n++;save();render()};
+$("cp").onclick=async()=>{try{await navigator.clipboard.writeText(text());$("cp").textContent="Copied"}catch(e){$("cp").textContent="Select the text above to copy"}setTimeout(()=>$("cp").textContent="Copy message",1800)};
+render();
+</script>
+</body>
+</html>
